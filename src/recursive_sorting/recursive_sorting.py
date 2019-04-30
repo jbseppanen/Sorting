@@ -1,8 +1,16 @@
 # TO-DO: complete the helper function below to merge 2 sorted arrays
 def merge(arrA, arrB):
     elements = len(arrA) + len(arrB)
-    merged_arr = [0] * elements
-    # TO-DO
+    merged_arr = []
+    while len(merged_arr) < elements:
+        if len(arrA) == 0:
+            merged_arr.append(arrB.pop(0))
+        elif len(arrB) == 0:
+            merged_arr.append(arrA.pop(0))
+        elif arrA[0] < arrB[0]:
+            merged_arr.append(arrA.pop(0))
+        else:
+            merged_arr.append(arrB.pop(0))
 
     return merged_arr
 
@@ -10,7 +18,11 @@ def merge(arrA, arrB):
 # TO-DO: implement the Merge Sort function below USING RECURSION
 def merge_sort(arr):
     # TO-DO
-
+    if len(arr) > 1:
+        div_point = int(len(arr) / 2)
+        left = merge_sort(arr[0:div_point])
+        right = merge_sort(arr[div_point:])
+        arr = merge(left, right)
     return arr
 
 
@@ -39,7 +51,7 @@ def quicksort(arr, low, high):
     else:
         pivot_index = low
         for i in range(low, high):
-            if arr[i]< arr[pivot_index]:
+            if arr[i] < arr[pivot_index]:
                 temp = arr[pivot_index + 1]
                 arr[pivot_index + 1] = arr[i]
                 arr[i] = temp
@@ -50,4 +62,9 @@ def quicksort(arr, low, high):
                 pivot_index += 1
 
     arr = quicksort(arr, pivot_index, low)
-    arr = quicksort(arr, pivot_index+1, high)
+    arr = quicksort(arr, pivot_index + 1, high)
+    return arr
+
+
+# print(merge_sort([1, 5, 8, 4, 2, 9, 6, 0, 3, 7]))
+# print(quicksort([1, 5, 8, 4, 2, 9, 6, 0, 3, 7], 0, 10))
