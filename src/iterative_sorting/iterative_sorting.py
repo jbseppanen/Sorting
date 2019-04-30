@@ -1,4 +1,17 @@
-# TO-DO: Complete the selection_sort() function below 
+
+def insertion_sort(arr):
+    for i in range(1, len(arr)):
+        temp = arr[i]
+        j = i
+        while j > 0 and temp < arr[j - 1]:
+            # shift left until correct position found
+            arr[j] = arr[j - 1]
+            j -= 1
+        # insert at correct position
+        arr[j] = temp
+
+
+# TO-DO: Complete the selection_sort() function below
 def selection_sort(arr):
     # loop through n-1 elements
     for i in range(0, len(arr) - 1):
@@ -20,9 +33,9 @@ def bubble_sort(arr):
     swap_flag = True
     while swap_flag:
         swap_flag = False
-        for i in range(0, len(arr)-1):
+        for i in range(0, len(arr) - 1):
             if arr[i] > arr[i + 1]:
-                arr[i], arr[i+1] = arr[i+1], arr[i]
+                arr[i], arr[i + 1] = arr[i + 1], arr[i]
                 swap_flag = True
     return arr
 
